@@ -1,0 +1,106 @@
+﻿@using ToDOList2.Models
+@model TaskViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="task-desk">
+    <h1>ToDo List</h1>
+
+    <form asp-action="Create" method="post" class="input-form">
+        <label>Task</label>
+        <textarea name="TaskDesc" required></textarea>
+        <label>Deadline</label>
+        <input name="Deadline" type="Date"/>
+        <label>Category</label>
+        <select name="CategoryName" required>
+            @foreach (var c in Model.Categories)
+            {
+                <option value="@c.CategoryName">@c.CategoryName</option>
+            } 
+        </select>
+        <input type="submit" value="Create"/>
+    </form>
+
+    <form asp-action="Index" method="get" class="filter">
+        <label>Category filter:</label>
+        <select name="CategoryName">
+            <option>All</option>
+            @foreach (var c in Model.Categories)
+            {
+                <option value="@c.CategoryName">@c.CategoryName</option>
+            } 
+        </select>
+        <input type="submit" value="Filter"/>
+    </form>
+
+    @if (Model.UncompliteTasks != null)
+    {
+        foreach (var t in Model.UncompliteTasks)
+        {
+            if(t.Deadline != null)
+            {
+                <div class="task">
+                    <div class="task-main">
+                        <div class="task-description">@t.TaskDesc</div>
+                        <div class="task-info"><p>@t.CategoryName</p><p>@String.Format("{0:dd.mm.yyyy}", t.Deadline)</p></div>
+                    </div>
+                    <div class="task-button-panel">
+                        <form asp-action="ChangeState" method="post">
+                                <button type="submit" name="Id" value="@t.Id" class="task-isDone">✓</button>
+                        </form>
+                        <form asp-action="Delete" method="post">
+                            <button type="submit" name="Id" value="@t.Id" class="task-delete">X</button>
+                        </form>
+                
+                    </div>
+                </div>
+            }
+        }
+        foreach (var t in Model.UncompliteTasks)
+        {
+            if(t.Deadline == null)
+            {
+                <div class="task">
+                    <div class="task-main">
+                        <div class="task-description">@t.TaskDesc</div>
+                        <div class="task-info"><p>@t.CategoryName</p><p>@String.Format("{0:dd.mm.yyyy}", t.Deadline)</p></div>
+                    </div>
+                    <div class="task-button-panel">
+                        <form asp-action="ChangeState" method="post">
+                                <button type="submit" name="Id" value="@t.Id" class="task-isDone">✓</button>
+                        </form>
+                        <form asp-action="Delete" method="post">
+                            <button type="submit" name="Id" value="@t.Id" class="task-delete">X</button>
+                        </form>
+                
+                    </div>
+                </div>
+            }
+        }
+
+    }
+    
+    @if (Model.CompliteTasks != null)
+    {
+        <h1>Completed</h1>
+
+        foreach (var t in Model.CompliteTasks)
+        {
+        <div class="task">
+            <div class="task-main">
+                <div class="task-description">@t.TaskDesc</div>
+                <div class="task-info"><p>@t.CategoryName</p><p>@String.Format("{0:dd.mm.yyyy}", t.CompleteDate)</p></div>
+            </div>
+            <div class="task-button-panel">
+                    <form asp-action="ChangeState" method="post">
+                        <button type="submit" name="Id" value="@t.Id" class="task-isDone">↺</button>
+                    </form>
+                    <form asp-action="Delete" method="post">
+                        <button type="submit" name="Id" value="@t.Id" class="task-delete">X</button>
+                    </form>
+            </div>
+        </div>
+        }
+    } 
+</div>
