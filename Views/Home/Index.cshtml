@@ -1,10 +1,22 @@
-﻿@using ToDOList2.Models
+﻿
 @model TaskViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 
+<form asp-controller="Home" asp-action="ChangeStorage">
+    <select name="storage" required>
+        <option value="MSSQL">MSSQL</option>
+        <option value="XML">XML</option>
+    </select>
+    <button type="submit">ChangeStorage</button>
+</form>
+
 <div class="task-desk">
+    <form asp-controller="Category" asp-action="Index">
+        <button type="submit">Edit Catetogories</button>
+    </form>
+    
     <h1>ToDo List</h1>
 
     <form asp-action="Create" method="post" class="input-form">
@@ -43,16 +55,18 @@
                 <div class="task">
                     <div class="task-main">
                         <div class="task-description">@t.TaskDesc</div>
-                        <div class="task-info"><p>@t.CategoryName</p><p>@String.Format("{0:dd.mm.yyyy}", t.Deadline)</p></div>
+                        <div class="task-info"><p>@t.CategoryName</p><p>@String.Format("{0:dd.MM.yyyy}", t.Deadline)</p></div>
                     </div>
                     <div class="task-button-panel">
                         <form asp-action="ChangeState" method="post">
-                                <button type="submit" name="Id" value="@t.Id" class="task-isDone">✓</button>
+                                <button asp-action="ChangeState" type="submit" name="Id" value="@t.Id" class="task-button">✓</button>
                         </form>
                         <form asp-action="Delete" method="post">
-                            <button type="submit" name="Id" value="@t.Id" class="task-delete">X</button>
+                            <button type="submit" name="Id" value="@t.Id" class="task-button">X</button>
                         </form>
-                
+                        <form asp-action="Edit" method="get">
+                            <button name="id" value="@t.Id" class="task-button">✎</button>
+                        </form>
                     </div>
                 </div>
             }
@@ -64,16 +78,18 @@
                 <div class="task">
                     <div class="task-main">
                         <div class="task-description">@t.TaskDesc</div>
-                        <div class="task-info"><p>@t.CategoryName</p><p>@String.Format("{0:dd.mm.yyyy}", t.Deadline)</p></div>
+                        <div class="task-info"><p>@t.CategoryName</p><p>@String.Format("{0:dd.MM.yyyy}", t.Deadline)</p></div>
                     </div>
                     <div class="task-button-panel">
                         <form asp-action="ChangeState" method="post">
-                                <button type="submit" name="Id" value="@t.Id" class="task-isDone">✓</button>
+                                <button type="submit" name="Id" value="@t.Id" class="task-button">✓</button>
                         </form>
                         <form asp-action="Delete" method="post">
-                            <button type="submit" name="Id" value="@t.Id" class="task-delete">X</button>
+                            <button type="submit" name="Id" value="@t.Id" class="task-button">X</button>
                         </form>
-                
+                        <form asp-action="Edit" method="get">
+                            <button name="id" value="@t.Id" class="task-button">✎</button>
+                        </form>
                     </div>
                 </div>
             }
@@ -81,7 +97,7 @@
 
     }
     
-    @if (Model.CompliteTasks != null)
+    @if (Model.CompliteTasks != null && Model.CompliteTasks.Count != 0)
     {
         <h1>Completed</h1>
 
@@ -90,14 +106,17 @@
         <div class="task">
             <div class="task-main">
                 <div class="task-description">@t.TaskDesc</div>
-                <div class="task-info"><p>@t.CategoryName</p><p>@String.Format("{0:dd.mm.yyyy}", t.CompleteDate)</p></div>
+                <div class="task-info"><p>@t.CategoryName</p><p>@String.Format("{0:dd.MM.yyyy}", t.CompleteDate)</p></div>
             </div>
             <div class="task-button-panel">
                     <form asp-action="ChangeState" method="post">
-                        <button type="submit" name="Id" value="@t.Id" class="task-isDone">↺</button>
+                        <button type="submit" name="Id" value="@t.Id" class="task-button">↺</button>
                     </form>
                     <form asp-action="Delete" method="post">
-                        <button type="submit" name="Id" value="@t.Id" class="task-delete">X</button>
+                        <button type="submit" name="Id" value="@t.Id" class="task-button">X</button>
+                    </form>
+                    <form asp-action="Edit" method="get">
+                        <button name="id" value="@t.Id" class="task-button">✎</button>
                     </form>
             </div>
         </div>

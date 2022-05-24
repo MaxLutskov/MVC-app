@@ -1,0 +1,41 @@
+﻿@model CategoryViewModel
+@{
+    ViewData["Title"] = "Edit Category List";
+}
+
+<div class="category-desk">
+    <form asp-controller="Home" asp-action="Index" method="get"> 
+        <button>Back to tasks</button>
+    </form>
+    @if (Model.Categories != null)
+    {
+        foreach (var c in Model.Categories)
+        {
+            <div class="category">
+                <div>
+                    <p>@c.CategoryName</p>
+                </div>
+                <div class="category-butt">
+                    <form asp-action="Edit">
+                        <input name="newName" type="text"/>
+                        <button name="categoryName" value="@c.CategoryName" class="task-button">✎</button>
+                    </form>
+                    <form asp-action="Delete">
+                        <button name="id" value="@c.CategoryName" class="task-button">X</button>
+                    </form>
+                </div> 
+            </div>
+        }
+    }
+    <div class="category">
+        <div>
+            <p>Category</p>
+        </div>
+        <div  class="category-butt">
+            <form asp-action="Add">
+                <input type="text" name="categoryName" required/>
+                <button class="task-button">+</button>
+            </form>
+        </div>
+    </div>
+</div>

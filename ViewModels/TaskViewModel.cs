@@ -1,4 +1,6 @@
-﻿namespace ToDOList2.Models
+﻿using ToDOList2.Models;
+
+namespace ToDOList2.ViewModels
 {
     public class TaskViewModel
     {

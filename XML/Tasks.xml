@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tasks>
+  <Task Id="1">
+    <TaskDesc>XMLTask2</TaskDesc>
+    <Deadline>2022/07/20</Deadline>
+    <IsDone>true</IsDone>
+    <CompleteDate>10.05.2022 00:00:00</CompleteDate>
+    <CategoryName>WorkXML</CategoryName>
+  </Task>
+  <Task Id="2">
+    <TaskDesc>fAFAGAGAGAG</TaskDesc>
+    <Deadline>2022-05-15T00:00:00</Deadline>
+    <IsDone>false</IsDone>
+    <CompleteDate />
+    <CategoryName>111</CategoryName>
+  </Task>
+  <Task Id="3">
+    <TaskDesc>tesr</TaskDesc>
+    <Deadline />
+    <IsDone>false</IsDone>
+    <CompleteDate />
+    <CategoryName>WorkXML</CategoryName>
+  </Task>
+  <Task Id="4">
+    <TaskDesc>wgagagaag</TaskDesc>
+    <Deadline>2022-05-27T00:00:00</Deadline>
+    <IsDone>false</IsDone>
+    <CompleteDate />
+    <CategoryName>WorkXML</CategoryName>
+  </Task>
+  <Task Id="5">
+    <TaskDesc>141afagag </TaskDesc>
+    <Deadline>2022-05-31T00:00:00</Deadline>
+    <IsDone>false</IsDone>
+    <CompleteDate />
+    <CategoryName>fgfdhdhdh</CategoryName>
+  </Task>
+  <Task Id="6">
+    <TaskDesc>awga1213314</TaskDesc>
+    <Deadline>2022-05-16T00:00:00</Deadline>
+    <IsDone>false</IsDone>
+    <CompleteDate />
+    <CategoryName>fgfdhdhdh</CategoryName>
+  </Task>
+</Tasks>

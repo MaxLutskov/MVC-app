@@ -1,0 +1,19 @@
+﻿@model TaskViewModel
+@{
+    ViewData["Title"] = "Edit Task "+@Model.TaskModel!.TaskDesc;
+}
+
+<form asp-action="Edit" method="post">
+    <label>Task</label>
+    <textarea name="newTaskDesc" required></textarea>
+    <label>Deadline</label>
+    <input name="newDeadline" type="Date"/>
+    <label>Category</label>
+    <select name="newCategoryName" required>
+        @foreach (var c in Model.Categories)
+        {
+            <option value="@c.CategoryName">@c.CategoryName</option>
+        } 
+    </select>
+    <button name="id" value="@Model.TaskModel.Id">Edit</button>
+</form>
